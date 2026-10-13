@@ -1,0 +1,143 @@
+/*
+ * MINDSPACE design tokens: the single source for colour, type, spacing,
+ * radii, shadows and motion. Tailwind's default palette is removed, so only
+ * these colours exist as utilities (bg-surface, text-fg-muted, ...).
+ * Documented in docs/design-system.md; contrast is checked by
+ * tests/unit/contrast.test.ts.
+ */
+@theme {
+  --color-*: initial;
+
+  /* Surfaces, darkest to lightest */
+  --color-canvas: #121214;
+  --color-sidebar: #17171a;
+  --color-surface: #1a1a1e;
+  --color-raised: #212126;
+  --color-hover: #26262c;
+  --color-active: #2d2d34;
+
+  /* Lines */
+  --color-line-subtle: #232328;
+  --color-line: #2e2e35;
+  --color-line-strong: #3e3e46;
+
+  /* Text */
+  --color-fg: #ede9e3;
+  --color-fg-muted: #a3a2a8;
+  --color-fg-subtle: #918f98;
+  --color-fg-disabled: #5d5c63;
+
+  /* Accent: muted amber */
+  --color-accent: #d3a157;
+  --color-accent-hover: #ddb06b;
+  --color-accent-fg: #1c1508;
+  --color-accent-text: #e0b46f;
+  --color-accent-soft: rgb(211 161 87 / 0.12);
+  --color-accent-line: rgb(211 161 87 / 0.38);
+
+  /* Status, used only where they carry meaning */
+  --color-success: #7fb98c;
+  --color-success-soft: rgb(127 185 140 / 0.12);
+  --color-info: #7fa9d8;
+  --color-info-soft: rgb(127 169 216 / 0.12);
+  --color-warning: #dc9a5f;
+  --color-warning-soft: rgb(220 154 95 / 0.12);
+  --color-danger: #e07d7d;
+  --color-danger-soft: rgb(224 125 125 / 0.12);
+
+  --color-scrim: rgb(6 6 8 / 0.62);
+  --color-transparent: transparent;
+
+  /* Typography */
+  --font-sans: 'Inter Variable', 'Vazirmatn Variable', 'Segoe UI', system-ui, sans-serif;
+  --font-fa: 'Vazirmatn Variable', 'Inter Variable', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'Cascadia Code', Consolas, ui-monospace, monospace;
+
+  --text-2xs: 0.6875rem;
+  --text-2xs--line-height: 1rem;
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1.125rem;
+  --text-sm: 0.8125rem;
+  --text-sm--line-height: 1.25rem;
+  --text-base: 0.875rem;
+  --text-base--line-height: 1.4rem;
+  --text-md: 1rem;
+  --text-md--line-height: 1.5rem;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.6rem;
+  --text-xl: 1.375rem;
+  --text-xl--line-height: 1.9rem;
+  --text-2xl: 1.75rem;
+  --text-2xl--line-height: 2.3rem;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  /* Spacing uses Tailwind's 4px step (--spacing: 0.25rem). */
+  --spacing: 0.25rem;
+
+  /* Radii */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
+
+  /* Shadows: subtle, no glow */
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.28);
+  --shadow-md: 0 4px 12px rgb(0 0 0 / 0.32), 0 1px 2px rgb(0 0 0 / 0.24);
+  --shadow-lg: 0 16px 40px rgb(0 0 0 / 0.45), 0 2px 6px rgb(0 0 0 / 0.3);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --duration-fast: 120ms;
+  --duration-base: 180ms;
+  --duration-slow: 260ms;
+
+  --default-transition-duration: var(--duration-base);
+  --default-transition-timing-function: var(--ease-out);
+
+  --animate-fade-in: fade-in var(--duration-base) var(--ease-out);
+  --animate-pop-in: pop-in var(--duration-base) var(--ease-out);
+  --animate-sheet-in: sheet-in var(--duration-slow) var(--ease-out);
+  --animate-fade-out: fade-out var(--duration-fast) var(--ease-out) forwards;
+  --animate-pop-out: pop-out var(--duration-fast) var(--ease-out) forwards;
+  --animate-sheet-out: sheet-out var(--duration-base) var(--ease-out) forwards;
+  --animate-check-pop: check-pop var(--duration-base) var(--ease-out);
+  --animate-pulse: pulse 1.6s ease-in-out infinite;
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes fade-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+  @keyframes pop-out {
+    from { opacity: 1; transform: none; }
+    to { opacity: 0; transform: translateY(2px) scale(0.99); }
+  }
+  @keyframes sheet-out {
+    from { opacity: 1; transform: none; }
+    to { opacity: 0; transform: translateX(var(--sheet-from, 24px)); }
+  }
+  @keyframes check-pop {
+    0% { transform: scale(0.6); }
+    60% { transform: scale(1.12); }
+    100% { transform: scale(1); }
+  }
+  @keyframes pop-in {
+    from { opacity: 0; transform: translateY(4px) scale(0.985); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes sheet-in {
+    from { opacity: 0; transform: translateX(var(--sheet-from, 24px)); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.55; }
+    50% { opacity: 1; }
+  }
+}

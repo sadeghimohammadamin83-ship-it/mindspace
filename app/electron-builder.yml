@@ -1,0 +1,46 @@
+appId: app.mindspace.desktop
+productName: MINDSPACE
+copyright: Copyright © 2026 MINDSPACE
+directories:
+  output: release
+  buildResources: build
+files:
+  - out/**
+  - package.json
+  - '!**/*.map'
+  - '!node_modules/**/{test,tests,__tests__,docs,example,examples}/**'
+  - '!node_modules/**/*.{md,ts,mts,cts}'
+  - '!node_modules/onnxruntime-node/bin/napi-v6/{darwin,linux}/**'
+  - '!node_modules/better-sqlite3/{src,deps}/**'
+  - '!node_modules/better-sqlite3/prebuilds/!(win32-x64).node'
+  - '!node_modules/onnxruntime-node/bin/napi-v6/win32/arm64/**'
+  - '!node_modules/@napi-rs/canvas-!(win32-x64-msvc)/**'
+  - '!node_modules/@napi-rs/lzma-*/**'
+# Native binaries and their sidecar libraries must live on disk, not inside app.asar.
+asarUnpack:
+  - node_modules/better-sqlite3/**/*.node
+  - node_modules/onnxruntime-node/bin/**
+npmRebuild: false
+nodeGypRebuild: false
+win:
+  icon: build/icon.ico
+  target:
+    - { target: nsis, arch: [x64] }
+    - { target: portable, arch: [x64] }
+  # Unsigned: no certificate is configured. Set CSC_LINK/CSC_KEY_PASSWORD to sign.
+  forceCodeSigning: false
+  signAndEditExecutable: true
+nsis:
+  artifactName: MINDSPACE-Setup-${version}-${arch}.${ext}
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: MINDSPACE
+  # User data lives in %APPDATA%\mindspace and is never removed by the uninstaller.
+  deleteAppDataOnUninstall: false
+  differentialPackage: false
+portable:
+  artifactName: MINDSPACE-Portable-${version}-${arch}.${ext}
+publish: null

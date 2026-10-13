@@ -1,0 +1,4 @@
+Synthetic text fixture.
+The cobalt harbor plan lists three milestones.
+متن آزمایشی فارسی: برنامه بندر کبالت
+Line with  odd   spacing and tabs	inside.

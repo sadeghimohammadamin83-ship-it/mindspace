@@ -9,7 +9,7 @@ The Windows (x64) installer is not published yet. When it is, it will be a relea
 
 ## Repository layout
 - `website/` — the static product website (React + TypeScript + Vite). Independent package; no Electron code.
-- The desktop app source is **not yet in this repository**; it is kept elsewhere and will be added separately.
+- `app/` — the MINDSPACE Electron desktop app (see `app/README.md`, `app/docs/RELEASING.md`). Desktop dev: `cd app && npm ci && npm run dev`.
 
 ## Website development
 ```
